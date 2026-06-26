@@ -1,0 +1,279 @@
+{
+	"info": {
+		"name": "Suplos Backend API",
+		"description": "API para la prueba técnica de FullStack",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Actividades",
+			"item": [
+				{
+					"name": "Listar Actividades",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/actividades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"actividades"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "",
+									"description": "Buscar por producto o código",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Lista las actividades disponibles para el select del formulario"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ofertas",
+			"item": [
+				{
+					"name": "Listar Ofertas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/ofertas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"ofertas"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Número de página"
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"description": "Registros por página"
+								},
+								{
+									"key": "search",
+									"value": "",
+									"description": "Buscar por consecutivo, objeto o descripción",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Lista todas las ofertas con paginación y búsqueda"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Detalle de Oferta",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/ofertas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"ofertas",
+								"1"
+							]
+						},
+						"description": "Obtiene el detalle completo de una oferta (incluye documentos)"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Oferta",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"objeto\": \"Compra de equipos de computación\",\n    \"descripcion\": \"Adquisición de 50 computadores portátiles para la oficina central\",\n    \"moneda\": \"COP\",\n    \"presupuesto\": 150000000.50,\n    \"actividad_id\": 1,\n    \"fecha_inicio\": \"2025-06-01\",\n    \"hora_inicio\": \"09:00\",\n    \"fecha_cierre\": \"2025-06-30\",\n    \"hora_cierre\": \"17:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/ofertas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"ofertas"
+							]
+						},
+						"description": "Crea una nueva oferta. El consecutivo se genera automáticamente."
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Oferta",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"objeto\": \"Compra de equipos de computación - Actualizado\",\n    \"descripcion\": \"Adquisición de 60 computadores portátiles para la oficina central y sucursales\",\n    \"moneda\": \"USD\",\n    \"presupuesto\": 250000.00,\n    \"actividad_id\": 2,\n    \"fecha_inicio\": \"2025-07-01\",\n    \"hora_inicio\": \"10:00\",\n    \"fecha_cierre\": \"2025-07-31\",\n    \"hora_cierre\": \"18:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/ofertas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"ofertas",
+								"1"
+							]
+						},
+						"description": "Actualiza una oferta existente. En edición debe tener al menos 1 documento."
+					},
+					"response": []
+				},
+				{
+					"name": "Subir Documento a Oferta",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "titulo",
+									"value": "Especificaciones Técnicas",
+									"type": "text"
+								},
+								{
+									"key": "descripcion",
+									"value": "Documento con las especificaciones técnicas de los equipos",
+									"type": "text"
+								},
+								{
+									"key": "archivo",
+									"value": "",
+									"type": "file",
+									"src": "/path/to/your/file.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/ofertas/1/documentos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"ofertas",
+								"1",
+								"documentos"
+							]
+						},
+						"description": "Sube un documento (PDF o ZIP) a una oferta existente"
+					},
+					"response": []
+				},
+				{
+					"name": "Exportar Reporte Excel",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/ofertas/reporte/excel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"ofertas",
+								"reporte",
+								"excel"
+							]
+						},
+						"description": "Genera un archivo Excel con todas las ofertas y sus documentos"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000/api",
+			"type": "string"
+		}
+	]
+}

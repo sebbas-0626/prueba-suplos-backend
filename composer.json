@@ -1,0 +1,19 @@
+{
+    "name": "suplos/backend",
+    "description": "Backend para prueba técnica FullStack",
+    "type": "project",
+    "require": {
+        "php": ">=7.0",
+        "illuminate/database": "^8.0",
+        "vlucas/phpdotenv": "^5.0",
+        "phpoffice/phpspreadsheet": "^1.0"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
