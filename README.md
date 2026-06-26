@@ -14,7 +14,7 @@ Backend para la prueba técnica FullStack PHP, desarrollado con PHP 7.0+ sin fra
 ### 1. Clonar el repositorio
 
 ```bash
-git clone <url-del-repositorio>
+git clone https://github.com/sebbas-0626/prueba-suplos-backend.git
 cd backend
 ```
 
