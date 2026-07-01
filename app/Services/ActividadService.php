@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Repositories\ActividadRepository;
+// pHpSpreadsheet es una librería para leer y escribir archivos de Excel
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class ActividadService

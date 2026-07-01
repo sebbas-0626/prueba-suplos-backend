@@ -14,6 +14,7 @@ class Actividad extends Model
         'codigo_producto', 'producto'
     ];
     
+    // Relación con las ofertas asociadas a la actividad donde 'actividad_id' es la clave foránea en la tabla 'ofertas'
     public function ofertas()
     {
         return $this->hasMany(Oferta::class, 'actividad_id');

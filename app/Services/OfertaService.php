@@ -44,7 +44,7 @@ class OfertaService
             throw new \Exception(json_encode($errors), 422);
         }
 
-        // Generar consecutivo
+        // Generar consecutivo — el estado siempre inicia en borrador sin importar lo que envíe el cliente
         $data['consecutivo'] = ConsecutivoHelper::generar();
         $data['estado'] = 'borrador';
 

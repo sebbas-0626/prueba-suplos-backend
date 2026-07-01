@@ -14,6 +14,7 @@ class Oferta extends Model
         'hora_inicio', 'fecha_cierre', 'hora_cierre', 'estado'
     ];
     
+    // Casting de atributos para asegurar que se manejen correctamente los tipos de datos
     protected $casts = [
         'presupuesto' => 'decimal:2',
         'fecha_inicio' => 'date',
@@ -22,11 +23,13 @@ class Oferta extends Model
         'hora_cierre' => 'string',
     ];
     
+    // Relación con la actividad asociada a la oferta en donde 'actividad_id' es la clave foránea en la tabla 'ofertas'
     public function actividad()
     {
         return $this->belongsTo(Actividad::class);
     }
     
+    // Relación con documentos de la oferta donde 'oferta_id' es la clave foránea en la tabla 'oferta_documentos'
     public function documentos()
     {
         return $this->hasMany(OfertaDocumento::class, 'oferta_id');

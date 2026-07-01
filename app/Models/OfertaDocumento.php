@@ -12,6 +12,7 @@ class OfertaDocumento extends Model
         'oferta_id', 'titulo', 'descripcion', 'archivo'
     ];
     
+    // Relación con la oferta a la que pertenece el documento donde 'oferta_id' es la clave foránea en la tabla 'ofertas_documentos'
     public function oferta()
     {
         return $this->belongsTo(Oferta::class);

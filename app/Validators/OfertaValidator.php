@@ -28,7 +28,8 @@ class OfertaValidator implements ValidatorInterface
         $this->validatePresupuesto($data);
         $this->validateActividad($data);
         $this->validateFechas($data);
-        
+        $this->validateEstado($data);
+
         if ($this->isUpdate) {
             $this->validateDocumentos();
         }
@@ -49,6 +50,7 @@ class OfertaValidator implements ValidatorInterface
         $this->errors[$field][] = $message;
     }
 
+    // Validación de campos requeridos de acuerdo a la operación (crear o actualizar)
     private function validateRequired(array $data)
     {
         $required = [
@@ -85,6 +87,14 @@ class OfertaValidator implements ValidatorInterface
     {
         if (isset($data['moneda']) && !in_array($data['moneda'], ['COP', 'USD', 'EUR'])) {
             $this->addError('moneda', 'La moneda debe ser COP, USD o EUR');
+        }
+    }
+// Validar que el estado sea uno de los permitidos que son: borrador, publicada, en_curso, cerrada, adjudicada
+    private function validateEstado(array $data)
+    {
+        $estadosPermitidos = ['borrador', 'publicada', 'en_curso', 'cerrada', 'adjudicada'];
+        if (isset($data['estado']) && !in_array($data['estado'], $estadosPermitidos)) {
+            $this->addError('estado', 'El estado debe ser: ' . implode(', ', $estadosPermitidos));
         }
     }
 
@@ -170,7 +180,7 @@ class OfertaValidator implements ValidatorInterface
             }
         }
     }
-
+// Validar que exista al menos un documento cargado si es una actualización
     private function validateDocumentos()
     {
         if ($this->ofertaId) {
